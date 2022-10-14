@@ -39,7 +39,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiMostrarCuentas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Mostrar Clientes"/>
+                <Property name="text" type="java.lang.String" value="Mostrar Cuentas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiMostrarCuentasActionPerformed"/>
@@ -47,7 +47,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiAgregarCuenta">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar Cliente"/>
+                <Property name="text" type="java.lang.String" value="Agregar Cuenta"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiAgregarCuentaActionPerformed"/>

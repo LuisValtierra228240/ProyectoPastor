@@ -60,19 +60,18 @@ public class CuentaDAO {
     }
 
     public static boolean verificarExistencia(String numero) {
-        boolean resultado = false;
+        boolean existencia = false;
         try {
             Connection connection = Conexion.obtener();
             String consulta = "SELECT numero FROM cuenta WHERE numero = ?;";
             PreparedStatement statement = connection.prepareStatement(consulta);
             statement.setString(1, numero);
 
-            statement.execute();
-
-            resultado = statement.getUpdateCount() == 1;
+            ResultSet resultSet = statement.executeQuery();
+            existencia = resultSet.next();
         } catch (Exception e) {
             System.err.print("Ha ocurrido un error: " + e.getMessage());
         }
-        return resultado;
+        return existencia;
     }
 }

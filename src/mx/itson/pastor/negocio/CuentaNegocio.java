@@ -8,7 +8,7 @@ public class CuentaNegocio {
     public static boolean guardar(String numero, Cliente cliente) {
         boolean resultado = false;
         try {
-            if (CuentaDAO.verificarExistencia(numero)) {
+            if (!CuentaDAO.verificarExistencia(numero)) {
                 resultado = CuentaDAO.guardar(numero, cliente);
             }
         } catch (Exception e) {

@@ -69,7 +69,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jmeCuentas.setText("Cuentas");
 
-        jmiMostrarCuentas.setText("Mostrar Clientes");
+        jmiMostrarCuentas.setText("Mostrar Cuentas");
         jmiMostrarCuentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiMostrarCuentasActionPerformed(evt);
@@ -77,7 +77,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jmeCuentas.add(jmiMostrarCuentas);
 
-        jmiAgregarCuenta.setText("Agregar Cliente");
+        jmiAgregarCuenta.setText("Agregar Cuenta");
         jmiAgregarCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiAgregarCuentaActionPerformed(evt);

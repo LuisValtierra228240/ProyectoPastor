@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import mx.itson.pastor.entidades.Cliente;
 import mx.itson.pastor.negocio.ClienteNegocio;
+import mx.itson.pastor.negocio.CuentaNegocio;
 import mx.itson.pastor.persistencia.ClienteDAO;
 import mx.itson.pastor.persistencia.CuentaDAO;
 
@@ -107,7 +108,7 @@ public class CuentaForm extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String numero = txtNumero.getText();
         Cliente cliente = clientes.get(cbxCliente.getSelectedIndex());
-        if (CuentaDAO.guardar(numero, cliente)) {
+        if (CuentaNegocio.guardar(numero, cliente)) {
             JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro guardado", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "No es posible guardar el registro.", "Registro no guardado", JOptionPane.ERROR_MESSAGE);
