@@ -15,7 +15,7 @@ import mx.itson.pastor.persistencia.CuentaDAO;
  * @author Luis
  */
 public class CuentaListado extends javax.swing.JFrame {
-
+    List<Cuenta> cuentas;
     /**
      * Creates new form CuentaListado
      */
@@ -35,7 +35,7 @@ public class CuentaListado extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCuenta = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -56,6 +56,11 @@ public class CuentaListado extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCuentaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblCuenta);
@@ -81,13 +86,19 @@ public class CuentaListado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        List<Cuenta> cuentas = CuentaDAO.obtenerTodos();
+        cuentas = CuentaDAO.obtenerTodos();
         DefaultTableModel modelo = (DefaultTableModel) tblCuenta.getModel();
         modelo.setRowCount(0);
         for(Cuenta c : cuentas){
             modelo.addRow(new Object[]{c.getNumero(), c.getCliente().getNombre(), c.getCliente().getDireccion(), c.getCliente().getTelefono(), c.getCliente().getEmail()});
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void tblCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCuentaMouseClicked
+        int fila = tblCuenta.getSelectedRow();
+        Cuenta cuenta =cuentas.get(fila);
+        new MovimientoListado(cuenta).setVisible(true);
+    }//GEN-LAST:event_tblCuentaMouseClicked
 
     /**
      * @param args the command line arguments

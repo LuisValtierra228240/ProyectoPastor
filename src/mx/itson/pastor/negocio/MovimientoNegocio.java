@@ -20,8 +20,8 @@ public class MovimientoNegocio {
         return resultado;
     }
 
-    public static DefaultTableModel llenarTabla(DefaultTableModel modelo) {
-        List<Movimiento> movimientos = MovimientoDAO.obtenerTodos();
+    public static DefaultTableModel llenarTabla(Cuenta cuenta, DefaultTableModel modelo) {
+        List<Movimiento> movimientos = MovimientoDAO.obtenerPorCuenta(cuenta);
         double subtotal = 0.0;
         for (Movimiento m : movimientos) {
             if (m.getTipo() == TipoMovimiento.ABONO) {

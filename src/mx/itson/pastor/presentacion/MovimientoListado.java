@@ -7,6 +7,8 @@ package mx.itson.pastor.presentacion;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import mx.itson.pastor.entidades.Cliente;
+import mx.itson.pastor.entidades.Cuenta;
 import mx.itson.pastor.entidades.Movimiento;
 import mx.itson.pastor.negocio.MovimientoNegocio;
 
@@ -17,12 +19,14 @@ import mx.itson.pastor.negocio.MovimientoNegocio;
 public class MovimientoListado extends javax.swing.JFrame {
 
     List<Movimiento> movimientos;
+    Cuenta cuenta;
 
     /**
      * Creates new form MovimientoListado
      */
-    public MovimientoListado() {
+    public MovimientoListado(Cuenta cuenta) {
         initComponents();
+        this.cuenta = cuenta;
     }
 
     /**
@@ -42,7 +46,7 @@ public class MovimientoListado extends javax.swing.JFrame {
         lblNombreCliente = new javax.swing.JLabel();
         lblNoCuenta = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -118,13 +122,17 @@ public class MovimientoListado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        lblNombreCliente.setText(cuenta.getCliente().getNombre());
+        lblNoCuenta.setText(cuenta.getNumero());
         DefaultTableModel modelo = (DefaultTableModel) tblMovimientos.getModel();
-        modelo = MovimientoNegocio.llenarTabla(modelo);
+        modelo = MovimientoNegocio.llenarTabla(cuenta, modelo);
     }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -153,11 +161,11 @@ public class MovimientoListado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MovimientoListado().setVisible(true);
+                new MovimientoListado(null).setVisible(true);
             }
         });
     }
-
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

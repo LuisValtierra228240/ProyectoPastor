@@ -39,6 +39,36 @@ public class MovimientoDAO {
         }
         return movimientos;
     }
+    
+    public static List<Movimiento> obtenerPorCuenta(Cuenta cuenta) {
+        List<Movimiento> movimientos = new ArrayList<>();
+        try {
+            Connection connection = Conexion.obtener();
+            String consulta = "SELECT mo.id, mo.concepto, mo.fecha, mo.importe, mo.tipo, cu.id, cu.numero FROM movimiento mo INNER JOIN cuenta cu ON mo.idCuenta = cu.id WHERE cu.id = ? ORDER BY mo.fecha;";
+            PreparedStatement statement = connection.prepareStatement(consulta);
+            statement.setInt(1, cuenta.getId());
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Movimiento m = new Movimiento();
+
+                m.setId(resultSet.getInt(1));
+                m.setConcepto(resultSet.getString(2));
+                m.setFecha(resultSet.getDate(3));
+                m.setImporte(resultSet.getDouble(4));
+                m.setTipo(TipoMovimiento.valueOf(resultSet.getString(5).toUpperCase()));
+
+                Cuenta c = new Cuenta();
+
+                c.setId(resultSet.getInt(6));
+                c.setNumero(resultSet.getString(7));
+
+                movimientos.add(m);
+            }
+        } catch (Exception e) {
+            System.err.print("Ocurrió un error: " + e.getMessage());
+        }
+        return movimientos;
+    }
 
     public static boolean guardar(String concepto, String fecha, double importe, TipoMovimiento tipo, Cuenta cuenta) {
         boolean resultado = false;
