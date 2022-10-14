@@ -137,20 +137,20 @@ public class MovimientoForm extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
             String concepto = txtConcepto.getText();
-        String fecha = dtpFecha.getDateTimeStrict().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        double importe = Double.parseDouble(txtImporte.getText());
-        TipoMovimiento tipo = TipoMovimiento.valueOf(cbxTipo.getSelectedItem().toString().toUpperCase());
-        Cuenta cuenta = cuentas.get(cbxCuenta.getSelectedIndex());
+            String fecha = dtpFecha.getDateTimeStrict().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            double importe = Double.parseDouble(txtImporte.getText());
+            TipoMovimiento tipo = TipoMovimiento.valueOf(cbxTipo.getSelectedItem().toString().toUpperCase());
+            Cuenta cuenta = cuentas.get(cbxCuenta.getSelectedIndex());
 
-        if (MovimientoNegocio.guardar(concepto, fecha, importe, tipo, cuenta)) {
-            JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro guardado", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "No es posible guardar el registro.", "Registro no guardado", JOptionPane.ERROR_MESSAGE);
-        }
+            if (MovimientoNegocio.guardar(concepto, fecha, importe, tipo, cuenta)) {
+                JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro guardado", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No es posible guardar el registro.", "Registro no guardado", JOptionPane.ERROR_MESSAGE);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Uno o más datos no son validos, asegurese de llenar todos los campos de manera correcta.", "Registro no guardado", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
